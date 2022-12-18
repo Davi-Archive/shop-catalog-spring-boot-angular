@@ -3,12 +3,13 @@ package io.davi.catalog.services;
 import io.davi.catalog.dto.CategoryDTO;
 import io.davi.catalog.entities.Category;
 import io.davi.catalog.repositories.CategoryRepository;
+import io.davi.catalog.services.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,4 +36,10 @@ public class CategoryService {
     }
 
 
+    @Transactional(readOnly = true)
+    public CategoryDTO findById(Long id) {
+        Optional<Category> obj = repository.findById(id);
+        Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+        return new CategoryDTO(entity);
+    }
 }
