@@ -1,14 +1,12 @@
 package io.davi.catalog.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "tb_category")
 public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
