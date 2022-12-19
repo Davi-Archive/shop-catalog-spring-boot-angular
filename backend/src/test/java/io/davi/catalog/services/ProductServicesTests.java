@@ -1,5 +1,6 @@
 package io.davi.catalog.services;
 
+import io.davi.catalog.dto.ProductDTO;
 import io.davi.catalog.entities.Product;
 import io.davi.catalog.repositories.ProductRepository;
 import io.davi.catalog.services.exceptions.DatabaseException;
@@ -15,9 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.jsf.FacesContextUtils;
 
@@ -61,6 +60,16 @@ public class ProductServicesTests {
         Mockito.doNothing().when(repository).deleteById(existingId);
         Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
         Mockito.doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
+    }
+
+    @Test
+    public void findAllPagedShouldReturnPage() {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<ProductDTO> result = service.findAllPaged(pageable);
+
+        Assertions.assertNotNull(result);
+        Mockito.verify(repository, Mockito.times(1))
+                .findAll(pageable);
     }
 
     @Test
