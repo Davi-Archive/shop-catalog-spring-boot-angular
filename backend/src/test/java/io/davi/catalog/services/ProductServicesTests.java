@@ -35,6 +35,7 @@ public class ProductServicesTests {
     private Long dependentId;
     private PageImpl<Product> page;
     private Product product;
+    private ProductDTO productDto;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -43,6 +44,7 @@ public class ProductServicesTests {
         dependentId = 4L;
         product = Factory.createProduct();
         page = new PageImpl<>(List.of(product));
+        productDto = new ProductDTO();
 
         Mockito.when(repository.findAll((Pageable) ArgumentMatchers.any()))
                 .thenReturn(page);
@@ -53,13 +55,67 @@ public class ProductServicesTests {
         Mockito.when(repository.findById(existingId))
                 .thenReturn(Optional.of(product));
 
-        Mockito.when(repository.findById(nonExistingId))
-                .thenReturn(Optional.empty());
+        Mockito.doThrow(ResourceNotFoundException.class)
+                .when(repository).findById(nonExistingId);
 
+        Mockito.when(repository.getOne(existingId)).thenReturn(product);
+        Mockito.doThrow(ResourceNotFoundException.class)
+                .when(repository).getOne(nonExistingId);
+
+
+        Mockito.when(repository.save(product))
+                .thenReturn(product);
 
         Mockito.doNothing().when(repository).deleteById(existingId);
         Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
         Mockito.doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
+    }
+
+
+    @Test
+    public void updateShouldReturnProductDTOWhenIdIsValid() {
+        ProductDTO obj = service.update(existingId, productDto);
+
+        Assertions.assertEquals(existingId, obj.getId());
+        Assertions.assertTrue(obj instanceof ProductDTO);
+
+        Mockito.verify(repository, Mockito.times(1))
+                .save(product);
+
+    }
+
+    @Test
+    public void updateShouldThrowResourceNotFoundExceptionWhenIdIsInvalid() {
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            service.update(nonExistingId, productDto);
+        });
+
+        Mockito.verify(repository, Mockito.times(1))
+                .getOne(nonExistingId);
+    }
+
+
+    @Test
+    public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExists() {
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            service.findById(nonExistingId);
+        });
+
+        Mockito.verify(repository, Mockito.times(1))
+                .findById(nonExistingId);
+    }
+
+    @Test
+    public void findByIdShouldReturnProductDTO() {
+        var object = service.findById(existingId);
+
+        Assertions.assertNotNull(object);
+        Assertions.assertEquals(object.getId(), existingId);
+        Assertions.assertTrue(object instanceof ProductDTO);
+
+        Mockito.verify(repository, Mockito.times(1))
+                .findById(existingId);
+
     }
 
     @Test
