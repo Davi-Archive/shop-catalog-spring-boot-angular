@@ -2,13 +2,18 @@ package io.davi.catalog.dto;
 
 import io.davi.catalog.entities.User;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
 public class UserDTO {
     private Long id;
+
+    @NotBlank(message = "Campo obrigatório")
     private String firstName;
     private String lastName;
+    @Email(message = "Email inválido")
     private String email;
     private Set<RoleDTO> roles = new HashSet<>();
 
