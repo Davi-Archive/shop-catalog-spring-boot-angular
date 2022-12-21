@@ -2,11 +2,11 @@ package io.davi.catalog.services;
 
 import io.davi.catalog.dto.RoleDTO;
 import io.davi.catalog.dto.UserDTO;
+import io.davi.catalog.dto.UserInsertDTO;
 import io.davi.catalog.entities.Role;
 import io.davi.catalog.entities.User;
-import io.davi.catalog.repositories.CategoryRepository;
-import io.davi.catalog.repositories.UserRepository;
 import io.davi.catalog.repositories.RoleRepository;
+import io.davi.catalog.repositories.UserRepository;
 import io.davi.catalog.services.exceptions.DatabaseException;
 import io.davi.catalog.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,9 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -63,9 +67,11 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO insert(UserDTO dto) {
+    public UserDTO insert(UserInsertDTO dto) {
         User entity = new User();
         copyDtoToEntity(dto, entity);
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        entity.setPassword(hashedPassword);
         entity = repository.save(entity);
         return new UserDTO(entity);
     }
