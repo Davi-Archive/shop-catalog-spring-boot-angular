@@ -21,7 +21,7 @@ public class ProductDTO implements Serializable {
     private String name;
     @NotBlank(message = "Campo requerido")
     private String description;
-    @Positive
+    @Positive(message = "O preço precisa ser positivo")
     private Double price;
     private String imgUrl;
     @PastOrPresent(message = "A data do produto não pode ser futura.")

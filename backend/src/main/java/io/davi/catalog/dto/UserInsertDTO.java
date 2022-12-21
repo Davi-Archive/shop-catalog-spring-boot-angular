@@ -1,5 +1,8 @@
 package io.davi.catalog.dto;
 
+import io.davi.catalog.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO  extends UserDTO{
     private String password;
 
