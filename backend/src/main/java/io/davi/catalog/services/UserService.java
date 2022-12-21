@@ -3,6 +3,7 @@ package io.davi.catalog.services;
 import io.davi.catalog.dto.RoleDTO;
 import io.davi.catalog.dto.UserDTO;
 import io.davi.catalog.dto.UserInsertDTO;
+import io.davi.catalog.dto.UserUpdateDTO;
 import io.davi.catalog.entities.Role;
 import io.davi.catalog.entities.User;
 import io.davi.catalog.repositories.RoleRepository;
@@ -77,7 +78,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO update(Long id, UserDTO dto) {
+    public UserDTO update(Long id, UserUpdateDTO dto) {
         try {
             User entity = repository.getOne(id);
             copyDtoToEntity(dto, entity);
