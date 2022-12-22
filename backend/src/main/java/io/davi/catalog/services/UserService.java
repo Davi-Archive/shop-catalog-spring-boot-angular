@@ -10,11 +10,16 @@ import io.davi.catalog.repositories.RoleRepository;
 import io.davi.catalog.repositories.UserRepository;
 import io.davi.catalog.services.exceptions.DatabaseException;
 import io.davi.catalog.services.exceptions.ResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +30,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
+
+    private static Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private UserRepository repository;
 
@@ -110,4 +117,13 @@ public class UserService {
         }
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = repository.findByEmail(username);
+        if (user == null) {
+            logger.error("User not found: " + username);
+            throw new UsernameNotFoundException("Email not found");
+        }
+        return user;
+    }
 }
