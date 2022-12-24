@@ -5,7 +5,7 @@ O sistema consiste em uma plataforma de ensino que mantém informações de curs
 
 
 ### _Domínio e ORM_
-- Implementação de um modelo de domínio complexo (projeto DSLearn)
+- Implementação de um modelo de domínio complexo
 - Instanciação (seed) de um modelo de domínio com SQL
 ### _Autorizações_
 - Autorização customizada em nível de serviço
