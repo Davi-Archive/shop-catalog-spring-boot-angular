@@ -1,7 +1,6 @@
 package io.davi.catalog.services;
 
 import io.davi.catalog.dto.ProductDTO;
-import io.davi.catalog.entities.Category;
 import io.davi.catalog.entities.Product;
 import io.davi.catalog.repositories.ProductRepository;
 import io.davi.catalog.services.exceptions.DatabaseException;
@@ -23,7 +22,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
