@@ -1,6 +1,7 @@
 package io.davi.catalog.services;
 
 import io.davi.catalog.dto.ProductDTO;
+import io.davi.catalog.entities.Category;
 import io.davi.catalog.entities.Product;
 import io.davi.catalog.repositories.ProductRepository;
 import io.davi.catalog.services.exceptions.DatabaseException;
@@ -10,18 +11,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.jsf.FacesContextUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(SpringExtension.class)
 public class ProductServicesTests {
@@ -45,11 +51,15 @@ public class ProductServicesTests {
         product = Factory.createProduct();
         page = new PageImpl<>(List.of(product));
         productDto = new ProductDTO();
+        List<Product> list = new ArrayList<>();
+        list.add(new Product());
+        Page<Product> page = new PageImpl<>(list);
 
-        Mockito.when(repository.findAll((Pageable) ArgumentMatchers.any()))
+
+        Mockito.when(repository.findAll((Pageable) any()))
                 .thenReturn(page);
 
-        Mockito.when(repository.save(ArgumentMatchers.any()))
+        Mockito.when(repository.save(any()))
                 .thenReturn(product);
 
         Mockito.when(repository.findById(existingId))
@@ -62,6 +72,11 @@ public class ProductServicesTests {
         Mockito.doThrow(ResourceNotFoundException.class)
                 .when(repository).getOne(nonExistingId);
 
+        Mockito.when(repository.findProductsWithCategories(any()))
+                .thenReturn(list);
+
+        Mockito.when(repository.find(any(),any(),any()))
+                .thenReturn(page);
 
         Mockito.when(repository.save(product))
                 .thenReturn(product);
@@ -69,6 +84,8 @@ public class ProductServicesTests {
         Mockito.doNothing().when(repository).deleteById(existingId);
         Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
         Mockito.doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
+
+
     }
 
 
@@ -120,12 +137,11 @@ public class ProductServicesTests {
 
     @Test
     public void findAllPagedShouldReturnPage() {
-        Pageable pageable = PageRequest.of(0, 10);
-        Page<ProductDTO> result = service.findAllPaged(pageable);
+        Pageable pageable = PageRequest.of(0, 12);
+
+        Page<ProductDTO> result = service.findAllPaged(0L, "", pageable);
 
         Assertions.assertNotNull(result);
-        Mockito.verify(repository, Mockito.times(1))
-                .findAll(pageable);
     }
 
     @Test
