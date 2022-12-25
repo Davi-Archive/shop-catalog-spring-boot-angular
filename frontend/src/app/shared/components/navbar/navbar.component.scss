@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  flex:1;
+  .container-fluid {
+    .collapse {
+      .navbar-nav {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        font-size: 18px;
+        li{
+          margin-right: 85px;
+        }
+      }
+    }
+  }
+}

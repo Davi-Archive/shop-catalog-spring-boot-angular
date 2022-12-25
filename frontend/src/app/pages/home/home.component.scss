@@ -1,0 +1,56 @@
+@import '../../../styles.scss';
+
+.homeContainerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .logoHomeContainer {
+    display: flex;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  .homeContentContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .homeTitleText {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 35px;
+      text-align: center;
+      letter-spacing: -0.015em;
+    }
+    .homeBottomText {
+      display: flex;
+      flex-wrap: wrap;
+      width: 65%;
+      text-align: center;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+      letter-spacing: -0.015em;
+      color: var(--gray2);
+    }
+    app-arrow-button{
+      display: flex;
+      align-items: center;
+      flex: 1;
+      width: auto;
+    }
+  }
+
+  @media screen and (min-width:$breakpointDesktop) {
+    flex-direction: row-reverse;
+    .logoHomeContainer {
+      height: 80%;
+    img {
+      object-fit: contain;
+    }
+  }
+  }
+}
