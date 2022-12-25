@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { AdminComponent } from './admin/admin.component';
 import { ComponentsModule } from '../shared/components.module';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -13,13 +14,14 @@ import { ComponentsModule } from '../shared/components.module';
     HomeComponent,
     LoginComponent,
     CatalogComponent,
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
+    RouterLink,
     CommonModule,
     ComponentsModule
   ],
-  exports:[
+  exports: [
     HomeComponent,
     LoginComponent
   ]

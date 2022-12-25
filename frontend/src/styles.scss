@@ -58,6 +58,10 @@ body {
 .mobile {
   display: block;
   @media screen and (min-width: $breakpointDesktop) {
-    display: none;
+    display: none !important;
   }
+}
+
+.flexColumn{
+  flex-direction: column;
 }
