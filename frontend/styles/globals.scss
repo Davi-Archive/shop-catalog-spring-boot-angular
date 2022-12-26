@@ -19,4 +19,6 @@ a:hover {
 
 // imports from components
 @import "../shared/components/layout/Navbar/navbar.scss";
+@import "../shared/components/ButtonIcon/buttonIcon.scss";
 @import "bootstrap/dist/css/bootstrap.css";
+@import "../pages/Home/home.scss";

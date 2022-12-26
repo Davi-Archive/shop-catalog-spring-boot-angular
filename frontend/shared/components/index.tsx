@@ -1,5 +1,4 @@
-import Navbar from "./layout/Navbar"
+import Navbar from "./layout/Navbar";
+import ButtonIcon from "./ButtonIcon";
 
-export {
-    Navbar
-}
+export { Navbar, ButtonIcon };
