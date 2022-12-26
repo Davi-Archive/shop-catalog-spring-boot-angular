@@ -1,0 +1,16 @@
+@import "./variables.scss";
+@import "../public/fonts/fonts.scss";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $fontBold, sans-serif;
+  font-weight: 700;
+}
+
+// imports from components
+@import "../shared/components/layout/Navbar/navbar.scss";
+@import "bootstrap/dist/css/bootstrap.css";
