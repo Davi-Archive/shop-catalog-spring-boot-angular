@@ -1,0 +1,77 @@
+@import "../../../styles.scss";
+.loginContainer {
+  display: flex;
+  max-width: 1500px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  .loginContentContainer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0.6;
+    text-align: left;
+
+    strong {
+      display: flex;
+      flex-direction: column;
+      margin-top: 3%;
+      margin-left: 10%;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 45px;
+      line-height: 55px;
+      letter-spacing: -0.015em;
+      color: var(--gray1);
+    }
+
+    .bottomLoginText {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 23px;
+      letter-spacing: -0.015em;
+      color: var(--gray2);
+      p {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+      }
+    }
+    .logoLoginContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 380px;
+      }
+    }
+  }
+
+  app-card {
+    display: flex;
+    flex: 0.4;
+    form {
+      padding: 20% 5% 0 5%;
+
+      .bottomTextContainer {
+        p {
+          .linkRegister {
+            text-decoration: underline;
+            text-transform: uppercase;
+            color: var(--primaryColor);
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpointDesktop) {
+    display: block;
+    margin: 5%;
+    app-card {
+      display: block;
+      width: 100%;
+    }
+  }
+}

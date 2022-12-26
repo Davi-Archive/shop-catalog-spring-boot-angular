@@ -1,0 +1,35 @@
+<section class="loginContainer">
+  <div class="loginContentContainer desktop">
+    <strong>
+      <p>Divulgue seus produtos</p>
+      <p>no DS Catalog</p>
+    </strong>
+    <div class="bottomLoginText">
+      <p>Faça parte do nosso catálogo de divulgação e</p>
+      <p>aumente a venda dos seus produtos.</p>
+    </div>
+    <div class="logoLoginContainer">
+      <img src="../../../assets/images/login_logo.svg" alt="Logo" />
+    </div>
+  </div>
+  <app-card extraClass="flexColumn">
+    <form>
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <input type="email" id="form2Example1" class="form-control" />
+        <label class="form-label" for="form2Example1">Email address</label>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline">
+        <input type="password" id="form2Example2" class="form-control" />
+        <label class="form-label" for="form2Example2">Password</label>
+      </div>
+      <app-arrow-button buttonText="Logar"></app-arrow-button>
+      <div class="bottomTextContainer d-flex justify-content-center">
+        <!-- Simple link -->
+       <p>Não tem Cadastro? <a routerLink="/register" class="linkRegister">Cadastrar</a></p>
+      </div>
+    </form>
+  </app-card>
+</section>

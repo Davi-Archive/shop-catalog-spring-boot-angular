@@ -1,0 +1,36 @@
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  margin: 10% 0;
+  align-items: center;
+  justify-content: center;
+  button {
+    display: flex;
+    border: 0;
+    position: relative;
+    background-color: var(--primaryColor);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 14px;
+    padding-right: 50px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    .buttonArrowContainer {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+      right: 0px;
+      width: 40px;
+      height: 100%;
+      background-color: rgba(38, 50, 56, 0.5);
+      border-radius: 0px 10px 10px 0px;
+    }
+  }
+}
