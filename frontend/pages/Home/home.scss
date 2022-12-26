@@ -1,12 +1,7 @@
 .home-container {
   padding: 10px;
   font-size: 26px;
-  border: 1px solid red;
   text-align: center;
-
-  h1 {
-    font-size: 1em;
-  }
 
   .home-card {
     display: flex;
@@ -14,14 +9,52 @@
     background-color: $white;
     box-shadow: 0px 4px 20px #00000040;
     border-radius: 20px;
-    border: 1px solid orange;
     padding: 10px;
 
+    .home-content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+      padding: 10px 10px 60px 10px;
+      text-align: center;
+      width: 100%;
+
+      h1 {
+        font-size: 1em;
+        margin-bottom: 15px;
+      }
+
+      .home-bottom-text {
+        color: $gray2;
+        font-size: 0.5em;
+        margin-bottom: 30px;
+      }
+    }
     .home-image-container {
       padding: 50px 15px;
+
       .home-logo-image {
         width: 100%;
         height: auto;
+      }
+    }
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    padding: 15px;
+    font-size: 30px;
+    .home-card {
+      flex-direction: row;
+      .home-content-container {
+        flex: 1;
+        button {
+          width: 60%;
+        }
+      }
+      .home-image-container {
+        padding: 20px;
+        flex: 1;
       }
     }
   }
