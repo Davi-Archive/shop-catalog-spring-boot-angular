@@ -1,13 +1,12 @@
 const Navbar = () => {
-
   return (
-    <nav className="bg-primary">
-      <div>
-        <a href="link">
-          <h4>DS Catalog</h4>
+    <nav className="navbar-container navbar-expand-md navbar bg-primary">
+      <div className="navbar-menu-container container-fluid">
+        <a href="link" className="navbar-logo-text">
+          <h4>Shop Catalog</h4>
         </a>
-        <div>
-          <ul>
+        <div className="navbar-menu-list collapse navbar-collapse">
+          <ul className="navbar-nav offset-md-2">
             <li>
               <a href="link">HOME</a>
             </li>
@@ -22,6 +21,6 @@ const Navbar = () => {
       </div>
     </nav>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

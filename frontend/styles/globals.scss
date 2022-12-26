@@ -11,6 +11,12 @@ h6 {
   font-weight: 700;
 }
 
+a,
+a:hover {
+  text-decoration: none;
+  color: unset;
+}
+
 // imports from components
 @import "../shared/components/layout/Navbar/navbar.scss";
 @import "bootstrap/dist/css/bootstrap.css";
