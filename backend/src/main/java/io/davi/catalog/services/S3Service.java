@@ -34,7 +34,7 @@ public class S3Service {
         try {
             String originalName = file.getOriginalFilename();
             String extension = FilenameUtils.getExtension(originalName);
-            String fileName = Instant.now().toString() + "." + extension;
+            String fileName = Instant.now().toEpochMilli() + "." + extension;
 
             InputStream is = file.getInputStream();
             String contentType = file.getContentType();
@@ -47,7 +47,7 @@ public class S3Service {
     private URL uploadFile(InputStream is, String fileName, String contentType) {
         ObjectMetadata meta = new ObjectMetadata();
         meta.setContentType(contentType);
-        LOG.info("Upload Start");
+        LOG.info("Upload Start " + Instant.now().toEpochMilli());
         s3client.putObject(bucketName, fileName, is, meta);
         LOG.info("Upload Finish");
         return s3client.getUrl(bucketName, fileName);
