@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.productContainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  app-product-card {
+    display: flex;
+    max-width: 400px;
+  }
+
+  @media screen and (min-width: $breakpointDesktop) {
+
+  }
+}

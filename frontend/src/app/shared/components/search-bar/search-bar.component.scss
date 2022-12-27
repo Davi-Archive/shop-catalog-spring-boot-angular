@@ -1,22 +1,51 @@
 @import "../../../../styles.scss";
 
-.searchBarSection {
-  padding: 15px;
-  .searchContent {
-  }
-  .categoryContainer {
-    .categoryBar {
-      .limparFiltro {
-        background-color: var(--white);
-        margin: 0 5px;
-        border: 1px solid var(--gray3);
-        color: var(--gray2);
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 16px;
-        text-align: center;
-        letter-spacing: -0.015em;
-        border-radius: 10px;
+
+app-card {
+  .searchBarSection {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    .searchContent {
+    }
+    .categoryContainer {
+      .categoryBar {
+        .limparFiltro {
+          background-color: var(--white);
+          margin: 0 5px;
+          border: 1px solid var(--gray3);
+          color: var(--gray2);
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          letter-spacing: -0.015em;
+          border-radius: 10px;
+        }
+      }
+    }
+    @media screen and (min-width: $breakpointDesktop) {
+      flex-direction: row;
+      .searchContent {
+        margin: 15px 10px 0 10px;
+      }
+      .categoryContainer {
+        width: 100%;
+        .categoryBar {
+          margin: 15px 10px 0 10px;
+          .form-control {
+            flex: 2;
+            width: 100%;
+          }
+          .btn-outline-secondary {
+            margin: 0 10px 0 0;
+          }
+          .limparFiltro {
+            font-size: 14px;
+            line-height: 19px;
+            width: 150px;
+          }
+        }
       }
     }
   }
