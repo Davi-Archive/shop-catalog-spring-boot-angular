@@ -20,6 +20,12 @@ const routes: Routes = [
   {
     path: 'catalog',
     component: CatalogComponent
+  },
+  {
+    path: 'products',
+    loadChildren:
+      () => import('./pages/products/products.module')
+        .then(m => m.ProductsModule)
   }
 ];
 

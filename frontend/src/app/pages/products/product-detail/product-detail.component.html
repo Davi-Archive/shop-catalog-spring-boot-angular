@@ -1,0 +1,24 @@
+<app-card extraClass="productDetail">
+  <section class="productDetailContainer">
+    <div class="goBackButton"><'BACK</div>
+    <div class="contentContainer">
+      <div class="imagePriceContainer">
+        <div class="productImage">
+          <img
+            width="500"
+            [src]="getProductImageOrPlaceholder(product)"
+            alt="image"
+          />
+        </div>
+        <div class="namePrice">
+          <strong>{{ product.name }}</strong>
+          <p>{{ product.price }}</p>
+        </div>
+      </div>
+      <div class="productDescription">
+      <span class="currencySymbol">R$</span>
+      <span >{{ product.description }}</span>
+      </div>
+    </div>
+  </section>
+</app-card>

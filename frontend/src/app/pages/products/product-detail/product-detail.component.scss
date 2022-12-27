@@ -1,0 +1,39 @@
+.productDetailContainer {
+  .goBackButton {
+  }
+
+  .contentContainer {
+    display: flex;
+    flex-direction: column;
+
+    .imagePriceContainer {
+      .productImage {
+        display: flex;
+        border: 1px solid var(--border1);
+        border-radius: 20px;
+        margin: 10px;
+        justify-content: center;
+
+        img {
+          object-fit: contain;
+          width: 260px;
+        }
+      }
+      .namePrice {
+        margin: 20px;
+        strong {
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 41px;
+          letter-spacing: -0.015em;
+          color: var(--gray1);
+          mix-blend-mode: normal;
+        }
+      }
+    }
+    .productDescription {
+      border: 1px solid var(--border1);
+      border-radius: 20px;
+    }
+  }
+}
