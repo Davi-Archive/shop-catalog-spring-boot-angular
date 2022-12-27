@@ -1,6 +1,9 @@
 <app-card extraClass="productDetail">
   <section class="productDetailContainer">
-    <div class="goBackButton"><'BACK</div>
+    <div class="goBackButton">
+      <img src="assets/images/arrow_left.svg"/>
+      <span>VOLTAR</span>
+    </div>
     <div class="contentContainer">
       <div class="imagePriceContainer">
         <div class="productImage">
@@ -12,12 +15,15 @@
         </div>
         <div class="namePrice">
           <strong>{{ product.name }}</strong>
-          <p>{{ product.price }}</p>
+          <p>
+            <span class="currencySymbol">R$</span>
+            <span class="productPriceText">{{ product.price }}</span>
+          </p>
         </div>
       </div>
       <div class="productDescription">
-      <span class="currencySymbol">R$</span>
-      <span >{{ product.description }}</span>
+        <h3>Descrição do Produto</h3>
+        <p>{{ product.description }}</p>
       </div>
     </div>
   </section>

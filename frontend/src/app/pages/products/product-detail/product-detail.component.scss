@@ -1,5 +1,29 @@
+@import '../../../../styles.scss';
+@mixin textType {
+  font-style: normal;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.015em;
+  color: var(--gray2);
+}
+
 .productDetailContainer {
+  display: flex;
+  flex-direction: column;
   .goBackButton {
+    margin: 28px 0 25px 20px;
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 20px;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 30px;
+      letter-spacing: -0.015em;
+      color: var(--gray1);
+      mix-blend-mode: normal;
+    }
   }
 
   .contentContainer {
@@ -11,7 +35,7 @@
         display: flex;
         border: 1px solid var(--border1);
         border-radius: 20px;
-        margin: 10px;
+        margin: 0 3% 3% 5%;
         justify-content: center;
 
         img {
@@ -29,11 +53,54 @@
           color: var(--gray1);
           mix-blend-mode: normal;
         }
+        p {
+          .currencySymbol {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 33px;
+            letter-spacing: -0.015em;
+            color: var(--gray2);
+            mix-blend-mode: normal;
+          }
+
+          .productPriceText {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 57px;
+            letter-spacing: -0.015em;
+            color: var(--primaryColor);
+            mix-blend-mode: normal;
+          }
+        }
       }
     }
     .productDescription {
       border: 1px solid var(--border1);
+      margin: 0 3% 3% 3%;
       border-radius: 20px;
+      padding: 24px 42px 40px 22px;
+      h3 {
+        border-radius: 20px;
+        font-weight: 700;
+        @include textType();
+      }
+      p {
+        @include textType();
+      }
     }
   }
+@media screen and (min-width: $breakpointDesktop) {
+  .contentContainer{
+    flex-direction: row;
+
+    .imagePriceContainer{
+      flex: 1;
+    }
+    .productDescription{
+      flex:1;
+    }
+  }
+}
 }
