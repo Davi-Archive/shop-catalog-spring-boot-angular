@@ -1,0 +1,23 @@
+@import "../../../../styles.scss";
+
+.searchBarSection {
+  padding: 15px;
+  .searchContent {
+  }
+  .categoryContainer {
+    .categoryBar {
+      .limparFiltro {
+        background-color: var(--white);
+        margin: 0 5px;
+        border: 1px solid var(--gray3);
+        color: var(--gray2);
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        border-radius: 10px;
+      }
+    }
+  }
+}
