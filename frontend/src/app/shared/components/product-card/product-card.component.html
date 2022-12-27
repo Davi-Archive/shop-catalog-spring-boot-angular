@@ -1,0 +1,18 @@
+<app-card>
+  <section class="productCardSection">
+    <div class="contentContainer">
+      <div class="imagePriceContainer">
+        <div class="productImage">
+          <img width="500" [src]="imageUrl" alt="image" />
+        </div>
+        <div class="namePrice">
+          <strong>{{ product?.name }}</strong>
+          <p>
+            <span class="currencySymbol">R$</span>
+            <span class="productPriceText">{{ product?.price | currency : 'BRL' : '' }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</app-card>

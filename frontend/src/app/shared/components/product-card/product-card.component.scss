@@ -1,0 +1,60 @@
+@import '../../../../styles.scss';
+@mixin textType {
+  font-style: normal;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.015em;
+  color: var(--gray2);
+}
+
+.productCardSection{
+   .contentContainer {
+    display: flex;
+    flex-direction: column;
+
+    .imagePriceContainer {
+      .productImage {
+        display: flex;
+        border-bottom: 1px solid var(--border1);
+        justify-content: center;
+
+        img {
+          object-fit: contain;
+          width: 80%;
+        }
+      }
+      .namePrice {
+        margin: 3% 10%;
+        strong {
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 41px;
+          letter-spacing: -0.015em;
+          color: var(--gray1);
+          mix-blend-mode: normal;
+        }
+        p {
+          .currencySymbol {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 33px;
+            letter-spacing: -0.015em;
+            color: var(--gray2);
+            mix-blend-mode: normal;
+          }
+
+          .productPriceText {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 57px;
+            letter-spacing: -0.015em;
+            color: var(--primaryColor);
+            mix-blend-mode: normal;
+          }
+        }
+      }
+    }
+  }
+}

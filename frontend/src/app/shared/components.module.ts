@@ -5,13 +5,15 @@ import { RouterLink } from '@angular/router';
 import { CardComponent } from './components/card/card.component';
 import { ArrowButtonComponent } from './components/arrow-button/arrow-button.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     CardComponent,
-    ArrowButtonComponent
+    ArrowButtonComponent,
+    ProductCardComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
   exports:[
     NavbarComponent,
     CardComponent,
-    ArrowButtonComponent
+    ArrowButtonComponent,
+    ProductCardComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from 'src/app/shared/types/product.ypes';
+import { PlaceholderImageService } from 'src/app/shared/utils/placeholder-image.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,6 +8,11 @@ import { IProduct } from 'src/app/shared/types/product.ypes';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent {
+  constructor(
+    private placeholder: PlaceholderImageService
+  ) { }
+
+
 
   @Input() product: IProduct = {
     "id": 3,
@@ -22,12 +28,9 @@ export class ProductDetailComponent {
       }
     ]
   }
-
-  getProductImageOrPlaceholder(product: IProduct): string {
-    if (!this.product.imgUrl) {
-      return '../../../../assets/images/placeholder.webp'
-    }
-    return this.product.imgUrl;
+  
+  getProductImageOrPlaceholder(product:IProduct){
+    this.placeholder.getProductImageOrPlaceholder(product);
   }
 
 }

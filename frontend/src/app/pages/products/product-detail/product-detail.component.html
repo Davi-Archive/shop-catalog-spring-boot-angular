@@ -17,7 +17,7 @@
           <strong>{{ product.name }}</strong>
           <p>
             <span class="currencySymbol">R$</span>
-            <span class="productPriceText">{{ product.price }}</span>
+            <span class="productPriceText">{{ product.price | currency : 'BRL' : ''}}</span>
           </p>
         </div>
       </div>
