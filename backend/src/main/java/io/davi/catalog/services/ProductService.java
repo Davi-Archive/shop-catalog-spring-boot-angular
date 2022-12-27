@@ -2,6 +2,7 @@ package io.davi.catalog.services;
 
 import io.davi.catalog.dto.CategoryDTO;
 import io.davi.catalog.dto.ProductDTO;
+import io.davi.catalog.dto.UriDTO;
 import io.davi.catalog.entities.Category;
 import io.davi.catalog.entities.Product;
 import io.davi.catalog.repositories.CategoryRepository;
@@ -16,8 +17,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +34,9 @@ public class ProductService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private S3Service s3Service;
 
     @Transactional(readOnly = true)
     public List<ProductDTO> findAll() {
@@ -109,4 +115,8 @@ public class ProductService {
         }
     }
 
+    public UriDTO uploadFile(MultipartFile file) {
+        URL url = s3Service.uploadFile(file);
+        return new UriDTO(url.toString());
+    }
 }

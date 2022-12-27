@@ -1,6 +1,7 @@
 package io.davi.catalog.resources;
 
 import io.davi.catalog.dto.ProductDTO;
+import io.davi.catalog.dto.UriDTO;
 import io.davi.catalog.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -23,10 +25,10 @@ public class ProductResource {
 
     @GetMapping
     public ResponseEntity<Page<ProductDTO>> findAll(
-            @RequestParam(value = "categoryId",defaultValue = "0") Long categoryId,
-            @RequestParam(value = "name",defaultValue = "") String name,
+            @RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
+            @RequestParam(value = "name", defaultValue = "") String name,
             Pageable pageable) {
-        Page<ProductDTO> list = service.findAllPaged(categoryId,name.trim(),pageable);
+        Page<ProductDTO> list = service.findAllPaged(categoryId, name.trim(), pageable);
         return ResponseEntity.ok().body(list);
     }
 
@@ -47,8 +49,14 @@ public class ProductResource {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @PostMapping(value = "/image")
+    public ResponseEntity<UriDTO> uploadImage(@RequestParam("file") MultipartFile file) {
+        UriDTO dto = service.uploadFile(file);
+        ResponseEntity.ok().body(dto);
+    }
+
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable Long id,@Valid @RequestBody ProductDTO dto) {
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @Valid @RequestBody ProductDTO dto) {
         dto = service.update(id, dto);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
