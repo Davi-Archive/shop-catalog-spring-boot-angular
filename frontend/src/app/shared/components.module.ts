@@ -7,6 +7,7 @@ import { ArrowButtonComponent } from './components/arrow-button/arrow-button.com
 import { MatIconModule } from '@angular/material/icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { CategoryBarComponent } from './components/category-bar/category-bar.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     CardComponent,
     ArrowButtonComponent,
     ProductCardComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CategoryBarComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     CardComponent,
     ArrowButtonComponent,
     ProductCardComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CategoryBarComponent
   ]
 })
 export class ComponentsModule { }
